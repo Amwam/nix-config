@@ -1,11 +1,9 @@
-{...}:
+{ ... }:
 {
   programs.vim = {
     enable = true;
 
-
-
-  defaultEditor = true;
+    defaultEditor = true;
     extraConfig = ''
       filetype plugin indent on
       set noswapfile
@@ -13,8 +11,11 @@
 
       set clipboard=unnamed
 
+      " Enables :Paste to just do what you want
+      command Paste execute 'set noai | insert | set ai'
+
       set number
-      sytax on
+      syntax on
       set hidden
       set title
       set autoindent
@@ -31,6 +32,8 @@
       set smartcase " Ignores case, except when capitals are used
 
       set cursorline " Highlight current line
+
+      set mouse=a
     '';
   };
 }

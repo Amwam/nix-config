@@ -1,6 +1,7 @@
-{...}:
+{ pkgs, ... }:
 {
- programs.git = {
+  programs.git = {
+    package = pkgs.git;
     enable = true;
     userEmail = "amit@amwam.me";
     userName = "Amit Shah";

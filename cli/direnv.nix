@@ -1,18 +1,18 @@
 {
-  inputs,
-  username,
   pkgs,
-  environment,
+  inputs,
   ...
 }:
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
-  environment.systemPackages = [
-    pkgs.direnv
-  ];
 
-  home-manager.users.${username}.programs.direnv = {
+  programs.direnv = {
     enable = true;
+    package = pkgs.direnv;
     nix-direnv.enable = true;
   };
+
+  programs.zsh.initExtra = ''
+    eval "$(direnv hook zsh)"
+  '';
+
 }

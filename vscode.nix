@@ -1,7 +1,5 @@
 {
   pkgs,
-  environment,
-  home-manager,
   ...
 }:
 {
