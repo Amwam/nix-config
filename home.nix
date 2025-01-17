@@ -1,6 +1,33 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  outputs,
+  inputs,
+  ...
+}:
 
 {
+  nixpkgs = {
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.stable-packages
+      outputs.overlays.master-packages
+
+      inputs.nix-vscode-extensions.overlays.default
+    ];
+
+  };
+
+  imports = [
+    ./cli/zsh.nix
+    ./cli/ssh.nix
+    ./cli/vim.nix
+    ./cli/git.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
@@ -62,48 +89,9 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    SSH_AUTH_SOCK = "~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-    # EDITOR = "emacs";
-  };
 
-
-  programs.git = {
-    enable = true;
-    userEmail = "amit@amwam.me";
-    userName = "Amit Shah";
-
-    extraConfig = {
-      user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATayPewCYLpkcOma0QCtAsTbn5t3qb7WrXLtiZ0iwKE";
-      gpg.format = "ssh";
-      commit.gpgsign = true;
-      "gpg \"ssh\"" = {
-        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      };
-    };
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.vim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
-  programs.ssh = {
-    enable = true;
-    extraConfig = ''
-      Host *
-          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    '';
-  };
-
-  programs.zsh = {
-    enable = true;
-    sessionVariables = {
-      SSH_AUTH_SOCK = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-      EDITOR = "vim";
-    };
-  };
-
 }

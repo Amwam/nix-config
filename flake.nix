@@ -7,9 +7,21 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    mac-app-util.url = "github:hraban/mac-app-util";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ 
+    self, 
+    nix-darwin, 
+    nixpkgs, 
+    home-manager, 
+    mac-app-util, 
+    ... 
+  }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -36,6 +48,9 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
+      # Allow installing licenced software
+      nixpkgs.config.allowUnfree = true;
+
       users.users.amit = {
         name = "amit";
         home = "/Users/amit";
@@ -46,14 +61,19 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#macmini
     darwinConfigurations."macmini" = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs; };
       modules = [
-        configuration 
+        configuration
         home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.amit = import ./home.nix; 
-        }
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.amit = import ./home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+          ./vscode.nix
       ];
     };
   };
