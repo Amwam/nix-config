@@ -5,7 +5,6 @@
 {
   environment.systemPackages = with pkgs; [
     vscode
-    #vscode-marketplace
     nixfmt-rfc-style
     nil
   ];
@@ -18,12 +17,12 @@
       "editor.formatOnSave" = true;
       "nix.enableLanguageServer" = true;
       "nix.serverSettings.nil.formatting.command" = [ "nixfmt" ];
-
+      "git.autofetch" = true;
     };
 
-    #extensions = with pkgs; [
-    # vscode-marketplace.jnoortheen.nix-ide
-    # vscode-marketplace.vscodevim.vim
-    #];
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      jnoortheen.nix-ide
+    ];
   };
 }
