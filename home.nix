@@ -1,6 +1,7 @@
 {
   outputs,
   inputs,
+  pkgs,
   ...
 }:
 
@@ -57,7 +58,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
+    pkgs._1password-cli
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -16,6 +16,7 @@
       # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
       "editor.formatOnSave" = true;
       "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
       "nix.serverSettings.nil.formatting.command" = [ "nixfmt" ];
       "git.autofetch" = true;
     };
