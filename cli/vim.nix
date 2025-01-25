@@ -1,9 +1,13 @@
 { ... }:
 {
-  programs.vim = {
+  programs.neovim = {
     enable = true;
 
     defaultEditor = true;
+
+    viAlias = true;
+    vimAlias = true;
+
     extraConfig = ''
       filetype plugin indent on
       set noswapfile
@@ -34,6 +38,10 @@
       set cursorline " Highlight current line
 
       set mouse=a
+
+      "folke/snacks.nvim",
     '';
+
   };
+
 }

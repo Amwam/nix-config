@@ -3,9 +3,11 @@ let
   prettyLog = (pkgs.writeShellScript "pretty_git_log.sh" (builtins.readFile ./git/log.sh));
 in
 {
+  home.packages = with pkgs; [
+    git
+  ];
 
   programs.git = {
-    package = pkgs.git;
     enable = true;
     userEmail = "amit@amwam.me";
     userName = "Amit Shah";
