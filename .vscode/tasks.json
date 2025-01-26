@@ -14,6 +14,20 @@
                 "showReuseMessage": false,
                 "clear": true
             }
+        },
+        {
+            "label": "Nix Build",
+            "type": "shell",
+            "command": "darwin-rebuild build --flake ~/.config/nix-darwin#macmini",
+            "hide": false,
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
         }
     ]
 }
