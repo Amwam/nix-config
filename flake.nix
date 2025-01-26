@@ -41,6 +41,9 @@
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
 
+          # Auto upgrade nix package and the daemon service.
+          services.nix-daemon.enable = true;
+
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
           system.stateVersion = 5;
@@ -68,6 +71,14 @@
               };
             };
 
+          };
+
+
+          security = {
+            pam = {
+              # Enable Touch ID for Sudo
+              enableSudoTouchIdAuth = true;
+            };
           };
 
         };
