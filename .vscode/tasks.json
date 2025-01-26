@@ -4,7 +4,7 @@
         {
             "label": "Nix Switch",
             "type": "shell",
-            "command": "darwin-rebuild switch --flake ~/.config/nix-darwin#macmini",
+            "command": "darwin-rebuild switch --flake ~/.config/nix-darwin#macmini && echo '\n\nDone!'",
             "hide": false,
             "presentation": {
                 "echo": true,
@@ -18,7 +18,7 @@
         {
             "label": "Nix Build",
             "type": "shell",
-            "command": "darwin-rebuild build --flake ~/.config/nix-darwin#macmini",
+            "command": "darwin-rebuild build --flake ~/.config/nix-darwin#macmini --show-trace",
             "hide": false,
             "presentation": {
                 "echo": true,

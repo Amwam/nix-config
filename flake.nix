@@ -76,7 +76,6 @@
 
           };
 
-
           security = {
             pam = {
               # Enable Touch ID for Sudo
