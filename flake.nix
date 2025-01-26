@@ -61,6 +61,9 @@
 
           system = {
             defaults = {
+
+              loginwindow.LoginwindowText = "Hi Amit!";
+
               NSGlobalDomain = {
                 _HIHideMenuBar = true;
                 AppleActionOnDoubleClick = "Minimize";
