@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     zsh
     starship
+    nerd-fonts.fira-code
   ];
 
   programs.zsh = {
