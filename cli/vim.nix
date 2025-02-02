@@ -1,5 +1,6 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, ... }: {
+  home.packages = [ pkgs.nil pkgs.nixfmt pkgs.ripgrep ];
+
   programs.neovim = {
     enable = true;
 
@@ -11,7 +12,5 @@
     plugins = [ pkgs.vimPlugins.lazy-nvim ];
   };
 
-  xdg.configFile.nvim = {
-    source = ./nvim;
-  };
+  xdg.configFile.nvim = { source = ./nvim; };
 }
