@@ -17,6 +17,11 @@
     syntaxHighlighting.enable = true;
     initExtra = ''
       eval "$(${pkgs.starship}/bin/starship init zsh)"
+
+
+      # Case insensitive cd
+      autoload -Uz compinit && compinit
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
     '';
 
   };
@@ -27,13 +32,4 @@
 
     };
   };
-
-  # home.file = [
-  #   {
-  #     name = ".config/starship.toml";
-  #     file = ./cli/zsh/starship.toml;
-  #   }
-  # ];
-
-  # xdg.configFile.starship = ./cli/zsh/starship.toml;
 }
