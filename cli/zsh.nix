@@ -27,9 +27,8 @@
   };
 
   home.file = {
-    ".config/startship.toml" = {
+    ".config/starship.toml" = {
       text = builtins.readFile ./zsh/starship.toml;
-
     };
   };
 }
