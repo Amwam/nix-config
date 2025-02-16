@@ -12,6 +12,9 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
+    };
   };
 
   outputs =
@@ -29,8 +32,7 @@
         {
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
-          environment.systemPackages = [
-          ];
+          environment.systemPackages = [ ];
 
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
@@ -94,6 +96,7 @@
           configuration
           home-manager.darwinModules.home-manager
           {
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.amit = import ./home.nix;
@@ -122,8 +125,7 @@
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
-          ./vscode.nix
-          ./cli/iterm2.nix
+          ./iterm2.nix
         ];
       };
     };

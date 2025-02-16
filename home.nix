@@ -1,7 +1,6 @@
 {
   outputs,
-  inputs,
-  pkgs,
+  lib,
   ...
 }:
 
@@ -13,18 +12,14 @@
       outputs.overlays.modifications
       outputs.overlays.stable-packages
       outputs.overlays.master-packages
-
-      inputs.nix-vscode-extensions.overlays.default
     ];
   };
 
-  imports = [
-    ./cli/zsh.nix
-    ./cli/ssh.nix
-    ./cli/vim.nix
-    ./cli/git.nix
-    ./cli/direnv.nix
-  ];
+  imports =
+    lib.filter (n: lib.strings.hasSuffix ".nix" n) (lib.filesystem.listFilesRecursive ./cli)
+    ++ [
+      ./vscode.nix
+    ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -57,7 +52,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs._1password-cli
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

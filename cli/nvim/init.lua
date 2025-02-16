@@ -161,6 +161,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Auto detect between tabs and spaces
+vim.opt.smarttab = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

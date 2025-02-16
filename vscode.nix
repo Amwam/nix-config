@@ -1,15 +1,10 @@
-{
-  pkgs,
-  ...
-}:
-{
-  environment.systemPackages = with pkgs; [
-    vscode
-    nixfmt-rfc-style
-    nil
-  ];
+{ pkgs, inputs, ... }: {
 
-  home-manager.users.amit.programs.vscode = {
+  nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+
+  home.packages = with pkgs; [ vscode nixfmt-rfc-style nil ];
+
+  programs.vscode = {
     enable = true;
     userSettings = {
       # This property will be used to generate settings.json:

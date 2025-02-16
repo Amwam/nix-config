@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = [ pkgs.nil pkgs.nixfmt pkgs.ripgrep pkgs.cargo ];
+  home.packages = with pkgs; [ nil nixfmt-rfc-style ripgrep cargo ];
 
   programs.neovim = {
     enable = true;
