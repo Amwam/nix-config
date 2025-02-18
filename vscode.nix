@@ -1,8 +1,13 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
 
-  home.packages = with pkgs; [ vscode nixfmt-rfc-style nil ];
+  home.packages = with pkgs; [
+    vscode
+    nixfmt-rfc-style
+    nil
+  ];
 
   programs.vscode = {
     enable = true;
@@ -14,6 +19,9 @@
       "nix.serverPath" = "nil";
       "nix.serverSettings.nil.formatting.command" = [ "nixfmt" ];
       "git.autofetch" = true;
+      "[dockerfile]" = {
+        "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
+      };
     };
 
     extensions = with pkgs.vscode-extensions; [
