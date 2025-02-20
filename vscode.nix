@@ -22,6 +22,7 @@
       "[dockerfile]" = {
         "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
       };
+      "git.confirmSync" = false;
     };
 
     extensions = with pkgs.vscode-extensions; [
