@@ -23,6 +23,9 @@
         "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
       };
       "git.confirmSync" = false;
+      "[python]" = {
+        "editor.defaultFormatter" = "charliermarsh.ruff";
+      };
     };
 
     extensions = with pkgs.vscode-extensions; [
